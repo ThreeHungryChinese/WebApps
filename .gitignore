@@ -338,3 +338,5 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+/MaineCoon/MaineCoon/appsettings.json
+/MaineCoon/MaineCoon/appsettings.Development.json
