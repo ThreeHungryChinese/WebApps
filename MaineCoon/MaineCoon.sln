@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29324.140
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaineCoon", "MaineCoon\MaineCoon.csproj", "{E92DBABD-6A83-4418-8D60-84B2CFF8ADA9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E92DBABD-6A83-4418-8D60-84B2CFF8ADA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E92DBABD-6A83-4418-8D60-84B2CFF8ADA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E92DBABD-6A83-4418-8D60-84B2CFF8ADA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E92DBABD-6A83-4418-8D60-84B2CFF8ADA9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3B9C0A1D-FF88-4677-8ABD-99D16385D0FA}
+	EndGlobalSection
+EndGlobal
