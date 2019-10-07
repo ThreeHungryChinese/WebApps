@@ -1,0 +1,64 @@
+﻿@page
+@model MaineCoon.Pages.DataInput.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>StudentScore</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.StudentScore.T)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.StudentScore.T)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.StudentScore.G)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.StudentScore.G)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.StudentScore.UR)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.StudentScore.UR)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.StudentScore.SOP)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.StudentScore.SOP)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.StudentScore.LOR)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.StudentScore.LOR)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.StudentScore.GPA)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.StudentScore.GPA)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.StudentScore.RES)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.StudentScore.RES)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="StudentScore.id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>
