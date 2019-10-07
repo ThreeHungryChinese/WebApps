@@ -1,0 +1,73 @@
+﻿@page
+@model MaineCoon.Pages.DataInput.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.StudentScore[0].T)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StudentScore[0].G)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StudentScore[0].UR)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StudentScore[0].SOP)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StudentScore[0].LOR)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StudentScore[0].GPA)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StudentScore[0].RES)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.StudentScore) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.T)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.G)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UR)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SOP)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LOR)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GPA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RES)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.id">Delete</a>
+            </td>
+        </tr>
+}
+
+    </tbody>
+</table>
