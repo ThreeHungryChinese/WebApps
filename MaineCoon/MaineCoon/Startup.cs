@@ -23,12 +23,16 @@ namespace MaineCoon {
         public void ConfigureServices(IServiceCollection services) {
             services.AddRazorPages();
 
-    services.AddDbContext<StudentScoreContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("StudentScoreContext")));
+            services.AddDbContext<StudentScoreContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnectionString")));
+            services.AddDbContext<UserContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnectionString")));
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
+
+
+    // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+    public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
             if (env.IsDevelopment()) {
                 app.UseDeveloperExceptionPage();
             }
