@@ -29,6 +29,7 @@ namespace MaineCoon.Pages
                 return Page();
             }
 
+
             _context.User.Add(UserData);
             await _context.SaveChangesAsync();
             return RedirectToPage("./Index");
