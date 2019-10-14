@@ -56,7 +56,7 @@ namespace MaineCoon.Pages.DataInput
                 }
             }
             */
-            return RedirectToPage("./Index?Score=");
+            return RedirectToPage("./Index");
         }
     }
 }

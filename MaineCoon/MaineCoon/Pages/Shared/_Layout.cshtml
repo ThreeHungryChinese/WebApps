@@ -6,39 +6,58 @@
     <title>@ViewData["Title"] - MaineCoon</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/theme.css" />
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">MaineCoon</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+            <div class="navbar-collapse collapse w-25 order-1 order-md-0 dual-collapse2">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link text-light" asp-area="" asp-page="/Index">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="https://blog.onic.xyz">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" asp-area="" asp-page="/About">About</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="mx-auto order-0">
+                <a class="navbar-brand mx-auto" asp-area="" asp-page="/Index">
+                    <!--img src="/docs/4.3/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt=""-->
+                    Auto Admittion System
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
+            </div>
+            <div class="navbar-collapse collapse w-25 order-3 dual-collapse2">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link text-light" asp-area="" asp-page="/Signup">Sign up</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" asp-area="" asp-page="/Signin">Sign in</a>
+                    </li>
+                </ul>
             </div>
         </nav>
+
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+    <div class="container justify-content-center" id="mainConationer">
+            <main role="main" class="pb-3 justify-content-center">
             @RenderBody()
-        </main>
-    </div>
+            </main>
+     </div>
 
     <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2019 - MaineCoon - <a asp-area="" asp-page="/Privacy">Privacy</a>
-        </div>
+        <img src="https://avatars0.githubusercontent.com/u/55505985?s=200&v=4" width="30" height="30" class="d-inline-block align-content-center" alt="">
+        2019 - Three Hungry Chinese -
+        <a asp-area="" asp-page="/Privacy">Privacy</a> -
+        <a href="https://github.com/ThreeHungryChinese/WebApps/blob/master/LICENSE">Licence</a> |
+        Github: <a href="https://github.com/ThreeHungryChinese/WebApps">ProjectMaineConn</a>
     </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
