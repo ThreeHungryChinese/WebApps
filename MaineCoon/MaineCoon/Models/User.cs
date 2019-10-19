@@ -21,8 +21,10 @@ namespace MaineCoon.Models {
         public int Id { get; set; }
         [Display(Name = "email")]
         public string email { get; set; }
-        [Display(Name = "SHA2.(SHA2.HMAC(email,pwd),SALT)")]
-        public string password { get; set; }
+        [Display(Name = "SHA2.HMAC(SALT,SHA2.HMAC(email,pwd))")]
+        public byte[] password { get; set; }
+        [Display(Name ="SALT")]
+        public byte[] SALT { get; set; }
         [Display(Name = "Role")]
         public role sysRole { get; set; }
         [Display(Name = "Registed at"), DataType(DataType.DateTime)]

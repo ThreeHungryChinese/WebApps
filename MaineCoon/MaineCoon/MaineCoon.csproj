@@ -58,7 +58,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Pages\developer\" />
     <Folder Include="Pages\schooladmin\" />
     <Folder Include="Pages\websiteadmin\" />
   </ItemGroup>
