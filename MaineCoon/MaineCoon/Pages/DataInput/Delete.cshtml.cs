@@ -12,9 +12,9 @@ namespace MaineCoon.Pages.DataInput
 {
     public class DeleteModel : PageModel
     {
-        private readonly MaineCoon.Data.StudentScoreContext _context;
+        private readonly MaineCoon.Data.MaineCoonContext _context;
 
-        public DeleteModel(MaineCoon.Data.StudentScoreContext context)
+        public DeleteModel(MaineCoon.Data.MaineCoonContext context)
         {
             _context = context;
         }

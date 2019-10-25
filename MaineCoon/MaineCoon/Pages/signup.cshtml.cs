@@ -11,9 +11,9 @@ using System.Security.Cryptography;
 namespace MaineCoon.Pages
 {
     public class SignupModel : PageModel {
-        private readonly MaineCoon.Data.UserContext _context;
+        private readonly MaineCoon.Data.MaineCoonContext _context;
 
-        public SignupModel(MaineCoon.Data.UserContext context) {
+        public SignupModel(MaineCoon.Data.MaineCoonContext context) {
             _context = context;
         }
         public IActionResult OnGet() {
@@ -43,7 +43,7 @@ namespace MaineCoon.Pages
 
             _context.User.Add(UserData);
             await _context.SaveChangesAsync();
-            return RedirectToPage("./Index");
+            return RedirectToPage("./Index?message=RegistSucceed!");
         }
     }
 }

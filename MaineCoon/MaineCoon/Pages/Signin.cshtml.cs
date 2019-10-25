@@ -7,16 +7,18 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using MaineCoon.Data;
 using MaineCoon.Models;
 using System.Security.Cryptography;
+using Microsoft.AspNetCore.Http;
 
 namespace MaineCoon.Pages
 {
     public class SigninModel : PageModel {
-        private readonly MaineCoon.Data.UserContext _context;
+        private readonly MaineCoon.Data.MaineCoonContext _context;
 
-        public SigninModel(MaineCoon.Data.UserContext context) {
+        public SigninModel(MaineCoon.Data.MaineCoonContext context) {
             _context = context;
         }
-        public IActionResult OnGet() {
+        public IActionResult OnGet(string message="") {
+            ViewData["message"] = message;
             return Page();
         }
 
@@ -33,10 +35,15 @@ namespace MaineCoon.Pages
                         //password correct
 
                         if(getSaveUser.accountStatus != 0) {
-                            //account is activited
+                            //SUCCESS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                            HttpContext.Session.SetInt32(StaticSetting.UserIdSessionKey, getSaveUser.Id);
+                            HttpContext.Session.SetString(StaticSetting.UsernameSessionKey, getSaveUser.email);
+                            HttpContext.Session.SetString(StaticSetting.UserTokenSessionKey, "\0");//Unused
+                            HttpContext.Session.SetString(StaticSetting.UserRoleSessionKey, getSaveUser.sysRole.ToString());
                             return RedirectToPage("./" + getSaveUser.sysRole.ToString() + "/Index");
                         }
                         else {
+                            //account is unactivited
                             throw new Exception("Account is banned!");
                         }
                     }
@@ -52,9 +59,6 @@ namespace MaineCoon.Pages
                 return Page();
             }
 
-
-            _context.User.Add(UserData);
-            await _context.SaveChangesAsync();
             return RedirectToPage("./Index");
         }
     }

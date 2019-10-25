@@ -12,6 +12,12 @@ using Microsoft.EntityFrameworkCore;
 using MaineCoon.Data;
 
 namespace MaineCoon {
+    public static class StaticSetting {
+        public const string UsernameSessionKey = "Username";
+        public const string UserTokenSessionKey = "UserToken";
+        public const string UserIdSessionKey = "UserID";
+        public const string UserRoleSessionKey = "Role";
+    }
     public class Startup {
         public Startup(IConfiguration configuration) {
             Configuration = configuration;
@@ -23,10 +29,13 @@ namespace MaineCoon {
         public void ConfigureServices(IServiceCollection services) {
             services.AddRazorPages();
 
-            services.AddDbContext<StudentScoreContext>(options =>
+            services.AddDbContext<MaineCoonContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnectionString")));
-            services.AddDbContext<UserContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnectionString")));
+            services.AddSession(options => {
+                options.IdleTimeout = TimeSpan.FromHours(1);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
+            });
         }
 
 
@@ -44,7 +53,7 @@ namespace MaineCoon {
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseSession();
             app.UseRouting();
 
             app.UseAuthorization();

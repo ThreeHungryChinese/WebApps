@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http;
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -35,22 +36,41 @@
             </div>
             <div class="navbar-collapse collapse w-25 order-3 dual-collapse2">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link text-light" asp-area="" asp-page="/Signup">Sign up</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" asp-area="" asp-page="/Signin">Sign in</a>
-                    </li>
+                    @if (String.IsNullOrEmpty(this.Context.Session.GetString(StaticSetting.UsernameSessionKey))) {
+                        //not login
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-page="/Signup">Sign up</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-page="/Signin">Sign in</a>
+                        </li>
+                    }
+                    else {
+                        <li class="nav-item">
+                            <a class="nav-link text-light" asp-area="" asp-page="/@this.Context.Session.GetString(StaticSetting.UserRoleSessionKey)/Index">@this.Context.Session.GetString(StaticSetting.UsernameSessionKey)</a>
+                        </li>
+                    }
                 </ul>
             </div>
         </nav>
 
     </header>
     <div class="container justify-content-center" id="mainConationer">
-            <main role="main" class="pb-3 justify-content-center">
-            @RenderBody()
-            </main>
-     </div>
+        <div class="row">
+            <div class="col">
+                @if (ViewData["message"] != null) {
+                    if (ViewData["message"].ToString() != "") {
+                        <div class="alert alert-primary" role="alert">
+                            @ViewData["message"]
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+        <!--main role="main" class="pb-3 justify-content-center"-->
+        @RenderBody()
+        <!--/main-->
+    </div>
 
     <footer class="border-top footer text-muted">
         <img src="https://avatars0.githubusercontent.com/u/55505985?s=200&v=4" width="30" height="30" class="d-inline-block align-content-center" alt="">
@@ -63,7 +83,10 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script>
+        feather.replace()
+    </script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>

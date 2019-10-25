@@ -13,9 +13,9 @@ namespace MaineCoon.Pages.DataInput
 {
     public class EditModel : PageModel
     {
-        private readonly MaineCoon.Data.StudentScoreContext _context;
+        private readonly MaineCoon.Data.MaineCoonContext _context;
 
-        public EditModel(MaineCoon.Data.StudentScoreContext context)
+        public EditModel(MaineCoon.Data.MaineCoonContext context)
         {
             _context = context;
         }

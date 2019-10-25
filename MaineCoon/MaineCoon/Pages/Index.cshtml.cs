@@ -14,8 +14,8 @@ namespace MaineCoon.Pages {
             _logger = logger;
         }
 
-        public IActionResult OnGet() {
-            return RedirectToPage("Signin");
+        public IActionResult OnGet(string message="") {
+            return Redirect("Signin?message=" + message);
 
         }
     }

@@ -3,58 +3,72 @@
 @{
     ViewData["Title"] = "Sign in";
 }
-
 <link rel="stylesheet" href="~/css/signin_and_signup.css" />
-<form method="post" class="form-signin needs-validation" onsubmit="submitsha()" novalidate>
-    <img class="mb-4" src="/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-    <h1 class="h3 mb-3 font-weight-normal">Sign up</h1>
-    <label for="inputEmail" class="sr-only">Email address</label>
-    <input asp-for="UserData.email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input asp-for="UserData.password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-    <label class="sr-only">Account Role</label>
-    <label for="reCAPTCHA" class="sr-only">reCAPTCHA</label>
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<div class="row">
+    <div class="col" style="height:20vh"></div>
+</div>
+<div class="row">
+    <form method="post" class="form-signin needs-validation  justify-content-center" onsubmit="submitsha()" novalidate>
+        <div class="container">
+            <div class="row justify-content-center">
+                <img class="mb-4" src="https://github.com/ThreeHungryChinese/QINGXUAN-S-PART/blob/master/3hungry.png?raw=true" alt="" width="72" height="72">
+            </div>
+            <div class="row">
+                <h1 class="h3 mb-3 font-weight-normal">@ViewData["Title"] </h1>
+            </div>
+            <div class="row">
+                <label for="inputEmail" class="sr-only">Email address</label>
+                <input asp-for="UserData.email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+            </div>
+            <div class="row">
+                <label for="inputPassword" class="sr-only">Password</label>
+                <input asp-for="UserData.password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+            </div>
+            <div class="row">
+                <label for="reCAPTCHA" class="sr-only">reCAPTCHA</label>
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            </div>
+        </div>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit">@ViewData["Title"] </button>
+    </form>
+</div>
 
 
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-</form>
 
 
-
-
-    <script src="https://www.google.com/recaptcha/api.js?render=6Lefar0UAAAAAIQYedhHO0bnH4L9lw5wFCJ5yH0T"></script>
-    <script>
-        grecaptcha.ready(function () {
-            grecaptcha.execute('6Lefar0UAAAAAIQYedhHO0bnH4L9lw5wFCJ5yH0T', { action: 'login' }).then(function (token) {
-                document.getElementById("retoken").value = token;
-            });
+<script src="https://www.google.com/recaptcha/api.js?render=6Lefar0UAAAAAIQYedhHO0bnH4L9lw5wFCJ5yH0T"></script>
+<script>
+    grecaptcha.ready(function () {
+        grecaptcha.execute('6Lefar0UAAAAAIQYedhHO0bnH4L9lw5wFCJ5yH0T', { action: 'login' }).then(function (token) {
+            document.getElementById("retoken").value = token;
         });
-    </script>
-    <script>
-        function submitsha() {
-            document.getElementById("inputPassword").value = sha256.hmac(document.getElementById("inputEmail").value, document.getElementById("inputPassword").value);
-        }
-    </script>
-    <script>
-        // Example starter JavaScript for disabling form submissions if there are invalid fields
-        (function () {
-            'use strict';
-            window.addEventListener('load', function () {
-                // Fetch all the forms we want to apply custom Bootstrap validation styles to
-                var forms = document.getElementsByClassName('needs-validation');
-                // Loop over them and prevent submission
-                var validation = Array.prototype.filter.call(forms, function (form) {
-                    form.addEventListener('submit', function (event) {
-                        if (form.checkValidity() === false) {
-                            event.preventDefault();
-                            event.stopPropagation();
-                        }
-                        form.classList.add('was-validated');
-                    }, false);
-                });
-            }, false);
-        })();
-    </script>
-    <script src="~/js/sha256.min.js"></script>
+    });
+</script>
+<script>
+    function submitsha() {
+        document.getElementById("inputPassword").value = sha256.hmac(document.getElementById("inputEmail").value, document.getElementById("inputPassword").value);
+    }
+</script>
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>
+<script src="~/js/sha256.min.js"></script>
 
