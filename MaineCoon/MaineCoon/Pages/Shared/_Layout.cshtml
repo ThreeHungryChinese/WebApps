@@ -1,5 +1,4 @@
-﻿@using Microsoft.AspNetCore.Http;
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -36,7 +35,7 @@
             </div>
             <div class="navbar-collapse collapse w-25 order-3 dual-collapse2">
                 <ul class="navbar-nav ml-auto">
-                    @if (String.IsNullOrEmpty(this.Context.Session.GetString(StaticSetting.UsernameSessionKey))) {
+                    @if (!User.Identity.IsAuthenticated) {
                         //not login
                         <li class="nav-item">
                             <a class="nav-link text-light" asp-area="" asp-page="/Signup">Sign up</a>
@@ -47,7 +46,7 @@
                     }
                     else {
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-page="/@this.Context.Session.GetString(StaticSetting.UserRoleSessionKey)/Index">@this.Context.Session.GetString(StaticSetting.UsernameSessionKey)</a>
+                            <a class="nav-link text-light" asp-area="" asp-page="/@this.Context.User.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.Role)?.Value/Index">@this.Context.User.Identity.Name</a>
                         </li>
                     }
                 </ul>

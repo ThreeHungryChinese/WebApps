@@ -8,6 +8,9 @@ using MaineCoon.Data;
 using MaineCoon.Models;
 using System.Security.Cryptography;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authentication;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace MaineCoon.Pages
 {
@@ -26,6 +29,10 @@ namespace MaineCoon.Pages
         public User UserData { get; set; }
         public async Task<IActionResult> OnPostAsync() {
 
+            if (!ModelState.IsValid) {
+                ViewData["message"] = "Login failed!";
+                return Page();
+            }
             using (HMACSHA256 hasher = new HMACSHA256()) {
                 User getSaveUser = _context.User.Where(usr => usr.email == UserData.email).FirstOrDefault();
                 if (getSaveUser != null) {
@@ -33,13 +40,16 @@ namespace MaineCoon.Pages
                     byte[] password = hasher.ComputeHash(UserData.password);
                     if (getSaveUser.password.SequenceEqual<byte>(password)) {
                         //password correct
-
                         if(getSaveUser.accountStatus != 0) {
                             //SUCCESS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                            HttpContext.Session.SetInt32(StaticSetting.UserIdSessionKey, getSaveUser.Id);
-                            HttpContext.Session.SetString(StaticSetting.UsernameSessionKey, getSaveUser.email);
-                            HttpContext.Session.SetString(StaticSetting.UserTokenSessionKey, "\0");//Unused
-                            HttpContext.Session.SetString(StaticSetting.UserRoleSessionKey, getSaveUser.sysRole.ToString());
+                            var claims = new List<Claim>{
+                                new Claim(ClaimTypes.Name, getSaveUser.email),
+                                new Claim(ClaimTypes.Email, getSaveUser.email),
+                                new Claim(ClaimTypes.Role,getSaveUser.sysRole.ToString()),
+                                new Claim(ClaimTypes.NameIdentifier,getSaveUser.Id.ToString())
+                            };
+                            var claimIdentity = new ClaimsIdentity(claims:claims, authenticationType: CookieAuthenticationDefaults.AuthenticationScheme);
+                            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimIdentity));
                             return RedirectToPage("./" + getSaveUser.sysRole.ToString() + "/Index");
                         }
                         else {
@@ -54,9 +64,6 @@ namespace MaineCoon.Pages
                 else {
                     throw new Exception("Cannot find this user!");
                 }
-            }
-            if (!ModelState.IsValid) {
-                return Page();
             }
 
             return RedirectToPage("./Index");

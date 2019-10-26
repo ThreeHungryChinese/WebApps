@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Http;
 using MaineCoon.Models;
-
+using System.Security.Claims;
 
 namespace MaineCoon.Pages.Developer
 {
@@ -18,9 +18,10 @@ namespace MaineCoon.Pages.Developer
         public IActionResult OnGet(string message="")
         {
             ViewData["message"] = message;
-            if (this.HttpContext.Session.GetInt32(StaticSetting.UserIdSessionKey) != null) {
+            if (this.User.Identity.IsAuthenticated) {
                 //logined
-                var context = _context.Processers.Where(procer => procer.belongsToUserID == (HttpContext.Session.GetInt32(StaticSetting.UserIdSessionKey)));
+                var currentUserId = Convert.ToInt32(User.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.NameIdentifier)?.Value ?? "-1");
+                var context = _context.Processers.Where(procer => procer.belongsToUserID ==currentUserId);
                 List<_Card> _Cards = new List<_Card>();
                 foreach (var oneProcesser in context) {
                     var oneCard = new _Card();

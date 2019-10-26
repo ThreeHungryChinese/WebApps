@@ -10,14 +10,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using MaineCoon.Data;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace MaineCoon {
-    public static class StaticSetting {
-        public const string UsernameSessionKey = "Username";
-        public const string UserTokenSessionKey = "UserToken";
-        public const string UserIdSessionKey = "UserID";
-        public const string UserRoleSessionKey = "Role";
-    }
     public class Startup {
         public Startup(IConfiguration configuration) {
             Configuration = configuration;
@@ -27,15 +22,25 @@ namespace MaineCoon {
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services) {
-            services.AddRazorPages();
+            services.AddRazorPages().AddRazorPagesOptions(options => {
+                options.Conventions.AuthorizeFolder("/");
+                options.Conventions.AllowAnonymousToPage("/Index");
+                options.Conventions.AllowAnonymousToPage("/Signin");
+            });
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options => {
+                    options.LoginPath = "/Signin";
+                    options.LogoutPath = "/Account/LogOff";
+                });
+
 
             services.AddDbContext<MaineCoonContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnectionString")));
-            services.AddSession(options => {
-                options.IdleTimeout = TimeSpan.FromHours(1);
-                options.Cookie.HttpOnly = true;
-                options.Cookie.IsEssential = true;
-            });
+            //services.AddSession(options => {
+            //    options.IdleTimeout = TimeSpan.FromHours(1);
+            //    options.Cookie.HttpOnly = true;
+            //    options.Cookie.IsEssential = true;
+            //});
         }
 
 
@@ -53,9 +58,10 @@ namespace MaineCoon {
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseSession();
+            //app.UseSession();
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints => {

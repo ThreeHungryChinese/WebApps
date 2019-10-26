@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using MaineCoon.Models;
 using Microsoft.AspNetCore.Http;
+using System.Security.Claims;
 
 namespace MaineCoon.Pages.Developer
 {
@@ -16,26 +17,16 @@ namespace MaineCoon.Pages.Developer
             _context = context;
         }
         public IActionResult OnGet() {
-            if (HttpContext.Session.GetInt32(StaticSetting.UserIdSessionKey) != null) {
-                return Page();
-            }
-            else {
-                return RedirectToPage("./Index");
-            }
+            return Page();
         }
         [BindProperty]
         public Processer processorInfo { get; set; }
         public async Task<IActionResult> OnPostAsync() {
-            if (HttpContext.Session.GetInt32(StaticSetting.UserIdSessionKey) == null) {
-                //if un-login
-                return RedirectToPage("./Index");
-            }
-
             if (_context.Processers.Where(procer => procer.friendlyName == processorInfo.friendlyName).Any()) {
                 throw new Exception("Processer Existed!");
             }
             else {
-                processorInfo.belongsToUserID = HttpContext.Session.GetInt32(StaticSetting.UserIdSessionKey).Value;
+                processorInfo.belongsToUserID = Convert.ToInt32(HttpContext.User.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.NameIdentifier)?.Value);
                 processorInfo.isTrained = false;
                 if (!ModelState.IsValid) {
                     return Page();

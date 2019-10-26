@@ -20,14 +20,19 @@ namespace MaineCoon.Models {
         [BindNever]
         public int Id { get; set; }
         [Display(Name = "email")]
+        [EmailAddress]
+        [Required]
         public string email { get; set; }
         [Display(Name = "SHA2.HMAC(SALT,SHA2.HMAC(email,pwd))")]
+        [DataType(DataType.Password)]
+        [Required]
         public byte[] password {
             get; set; 
         }
         [Display(Name ="SALT")]
         public byte[] SALT { get; set; }
         [Display(Name = "Role")]
+        [Required]
         public role sysRole { get; set; }
         [Display(Name = "Registed at"), DataType(DataType.DateTime)]
         public DateTime registionTime { get; set; }
