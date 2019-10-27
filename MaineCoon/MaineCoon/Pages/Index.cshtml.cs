@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -14,8 +15,14 @@ namespace MaineCoon.Pages {
             _logger = logger;
         }
 
-        public IActionResult OnGet() {
-            return RedirectToPage("Signin");
+        public IActionResult OnGet(string message="") {
+            if (User.Identity.IsAuthenticated) {
+                return Redirect("~/" +
+                    User.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.Role)?.Value ??
+                    ("Signin?message=" + message)
+                    );
+            }
+            return Redirect("Signin?message=" + message);
 
         }
     }

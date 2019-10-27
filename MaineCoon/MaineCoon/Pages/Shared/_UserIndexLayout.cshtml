@@ -1,0 +1,55 @@
+﻿@using MaineCoon.Models
+<div class="row" style="height:10vh">
+    <h1>@ViewData["Title"]</h1>
+</div>
+<div class="row">
+    <div class="card-deck ">
+        <div class="card">
+            <div class="card-body text-center align-items-center">
+                <div class="container" style="height:100%">
+                    <div class="row align-items-center" style="height:100%">
+                        <div class="col">
+                            <a href="@this.Context.Request.Path/Add" class="btn btn-plus" style="height:10vh;width:10vh"><span data-feather="plus" style="height:100%;width:100%"></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @try {
+            List<_Card> _Cards = (List<_Card>)ViewData["CardList"];
+            foreach (_Card card in _Cards) {
+                <div class="card">
+                    <div class="card-header">@card.Head</div>
+                    <div class="card-body">
+                        <h5 class="card-title">@card.BodyTitle</h5>
+                        <p class="card-text">@card.Body</p>
+                        <a href="@card.Btn0URL" class="btn btn-danger">@card.Btn0Label</a>
+                        <a href="@card.Btn1URL" class="btn btn-danger">@card.Btn1Label</a>
+                    </div>
+                </div>
+            }
+        }
+        catch (Exception e) {
+
+        }
+    </div> 
+</div>
+<style>
+    .btn-plus{
+        border-radius:50%;
+        background-color:darkgray;
+        transition: 0s all;
+
+    }
+    .btn-plus:hover{
+        background-color:gray;
+    }
+    .card{
+        border-color:darkgrey;
+        transition: 1s all;
+    }
+    .card:hover{
+        box-shadow: 0px 0px 10px 3px pink;
+        border-color:pink;    
+    }
+</style>

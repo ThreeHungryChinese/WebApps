@@ -3,40 +3,55 @@
 @{
     ViewData["Title"] = "Sign up";
 }
-
 <link rel="stylesheet" href="~/css/signin_and_signup.css" />
-<form method="post" class="form-signin needs-validation"  onsubmit="submitsha()" novalidate>
-    <img class="mb-4" src="/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
-    <h1 class="h3 mb-3 font-weight-normal">Sign up</h1>
-    <label for="inputEmail" class="sr-only">Email address</label>
-    <input asp-for="UserData.email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input asp-for="UserData.password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-    <label class="sr-only">Account Role</label>
-    <select asp-for="UserData.sysRole" class="custom-select form-control" id="AccountRole" required>
-        <option selected>Choose Account Role</option>
-        <option value="0">Student</option>
-        <option value="1">SchoolAdmin</option>
-        <option value="2">Developer</option>
-        <option value="3">WebsiteAdmin</option>
-    </select>
-    <label for="reCAPTCHA" class="sr-only">reCAPTCHA</label>
-    <input type="password" id="retoken" class="form-control" placeholder="Password" disabled readonly required>
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-
-
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-        <label class="form-check-label" for="invalidCheck">
-            Agree to terms and conditions
-        </label>
-        <div class="invalid-feedback">
-            You must agree before submitting.
+<div class="container">
+    <form method="post" class="form-signin needs-validation" onsubmit="submitsha()" novalidate>
+        <!--
+    <div class="col">
+        <div class="alert alert-primary" role="alert">
+            This is a primary alert—check it out!
         </div>
     </div>
+     -->
+        <div class="row" style="height:20vh"></div>
+        <div class="row justify-content-center">
+            <img class="mb-4" src="https://github.com/ThreeHungryChinese/QINGXUAN-S-PART/blob/master/3hungry.png?raw=true" alt="" width="72" height="72">
+        </div>
+        <div class="row">
+            <h1 class="h3 mb-3 font-weight-normal">Sign up</h1>
+            <label for="inputEmail" class="sr-only">Email address</label>
+            <input asp-for="UserData.email" type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+            <label for="Name" class="sr-only">Name</label>
+            <input asp-for="UserData.name" type="text" id="name" class="form-control" placeholder="Name" required >
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input asp-for="UserData.password" type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+            <label class="sr-only">Account Role</label>
+            <select asp-for="UserData.sysRole" class="custom-select form-control" id="AccountRole" required>
+                <option selected>Choose Account Role</option>
+                <option value="0">Student</option>
+                <option value="1">SchoolAdmin</option>
+                <option value="2">Developer</option>
+                <option value="3">WebsiteAdmin</option>
+            </select>
+            <label for="reCAPTCHA" class="sr-only">reCAPTCHA</label>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-    <button class="btn btn-lg btn-primary btn-block" type="submit" >Sign in</button>
-</form>
+
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                <label class="form-check-label" for="invalidCheck">
+                    Agree to terms and conditions
+                </label>
+                <div class="invalid-feedback">
+                    You must agree before submitting.
+                </div>
+            </div>
+
+            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        </div>
+
+    </form>
+</div>
 
 <script src="https://www.google.com/recaptcha/api.js?render=6Lefar0UAAAAAIQYedhHO0bnH4L9lw5wFCJ5yH0T"></script>
 <script>

@@ -1,0 +1,79 @@
+﻿@page
+@model MaineCoon.Pages.SchoolAdmin.AddProgramModel
+@{
+    ViewData["Title"] = "Add";
+}
+
+
+
+
+<div class="row">
+    <h1>@ViewData["Title"] </h1>
+</div>
+
+<div class="row" style="height:10vh"></div>
+
+<form method="post" class="needs-validation" novalidate>
+    <div class="row">
+        <h4>@Html.DisplayNameFor(model => model.NewProgram.ProgramName)</h4>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label for="friendlyName" class="sr-only">@Html.DisplayNameFor(model => model.NewProgram.ProgramName)</label>
+            <input type="text" asp-for="NewProgram.ProgramName" id="ProgramName" class="form-control" placeholder="Your Program Name" required autofocus>
+        </div>
+    </div>
+
+    <div class="row"><h4>@Html.DisplayNameFor(model => model.NewProgram.ProcesserId)</h4></div>
+    <div class="row">
+        <div class="col">
+            <label for="publicKey" class="sr-only">@Html.DisplayNameFor(model => model.NewProgram.ProcesserId)</label>
+            <select asp-for="NewProgram.ProcesserId" class="custom-select form-control" id="AccountRole" required>
+                <option selected>Choose Account Role</option>
+                @foreach (var processer in this.Model.processers) {
+                    <option value="@processer.Key">@processer.Value</option>
+                }
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    </div>
+
+    <div class="row" style="height:1vh"></div>
+
+    <div class="row">
+        <div class="col">
+            <button class="btn btn-lg btn-primary btn-block" type="submit">@ViewData["Title"] </button>
+        </div>
+    </div>
+
+</form>
+<style>
+    p {
+        margin-bottom: 0;
+        padding-top: 0.4rem;
+        color: lightslategray
+    }
+</style>
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>

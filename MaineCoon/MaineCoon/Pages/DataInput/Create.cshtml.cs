@@ -14,9 +14,9 @@ namespace MaineCoon.Pages.DataInput
 {
     public class CreateModel : PageModel
     {
-        private readonly MaineCoon.Data.StudentScoreContext _context;
+        private readonly MaineCoon.Data.MaineCoonContext _context;
 
-        public CreateModel(MaineCoon.Data.StudentScoreContext context)
+        public CreateModel(MaineCoon.Data.MaineCoonContext context)
         {
             _context = context;
         }

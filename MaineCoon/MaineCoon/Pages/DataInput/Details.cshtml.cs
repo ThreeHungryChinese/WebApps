@@ -12,9 +12,9 @@ namespace MaineCoon.Pages.DataInput
 {
     public class DetailsModel : PageModel
     {
-        private readonly MaineCoon.Data.StudentScoreContext _context;
+        private readonly MaineCoon.Data.MaineCoonContext _context;
 
-        public DetailsModel(MaineCoon.Data.StudentScoreContext context)
+        public DetailsModel(MaineCoon.Data.MaineCoonContext context)
         {
             _context = context;
         }

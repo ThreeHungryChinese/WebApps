@@ -1,0 +1,122 @@
+﻿@page
+@model MaineCoon.Pages.Developer.AddProcesserModel
+@{
+    ViewData["Title"] = "Add Processer";
+}
+
+
+
+
+
+<div class="row">
+    <h1>@ViewData["Title"] </h1>
+</div>
+
+<div class="row" style="height:10vh"></div>
+
+<form method="post" class="needs-validation" novalidate>
+    <div class="row">
+        <h4>@Html.DisplayNameFor(model => model.processorInfo.friendlyName)</h4>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label for="friendlyName" class="sr-only">@Html.DisplayNameFor(model => model.processorInfo.friendlyName)</label>
+            <input type="text" asp-for="processorInfo.friendlyName" id="friendlyName" class="form-control" placeholder="Your processer's name" required autofocus>
+        </div>
+    </div>
+
+    <div class="row"><h4>@Html.DisplayNameFor(model => model.processorInfo.publicKey)</h4></div>
+    <div class="row">
+        <div class="col">
+            <label for="publicKey" class="sr-only">@Html.DisplayNameFor(model => model.processorInfo.publicKey)</label>
+            <textarea type="time" asp-for="processorInfo.publicKey" id="publicKey" class="form-control" placeholder="Your processer's publicKey" required></textarea>
+        </div>
+    </div>
+
+    <div class="row">
+        <h4>@Html.DisplayNameFor(model => model.processorInfo.trainCallbackURL)</h4>
+    </div>
+    <div class="row">
+        <!--<p class="align-text-bottom">https://</p>-->
+        <div class="col">
+            <label for="trainCallbackURL" class="sr-only">@Html.DisplayNameFor(model => model.processorInfo.trainCallbackURL)</label>
+            <input asp-for="processorInfo.trainCallbackURL" type="url" id="trainCallbackURL" class="form-control" placeholder="https://example.com/train" required>
+        </div>
+    </div>
+
+    <div class="row"><h4>@Html.DisplayNameFor(model => model.processorInfo.getResultURL)</h4></div>
+    <div class="row">
+        <!--<p>https://</p>-->
+        <div class="col">
+            <label for="getResultURL" class="sr-only">@Html.DisplayNameFor(model => model.processorInfo.getResultURL)</label>
+            <input asp-for="processorInfo.getResultURL" type="url" id="getResultURL" class="form-control" placeholder="https://example.com/api/result" required>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-0 justify-content-center">
+            <input type="checkbox" asp-for="processorInfo.isGetResultNeedWaitCallback" id="isGetResultNeedWaitCallback" class="small" checked>
+        </div>
+        <p>@Html.DisplayNameFor(model => model.processorInfo.isGetResultNeedWaitCallback)</p>
+    </div>
+
+    <div class="row"><h4>@Html.DisplayNameFor(model => model.processorInfo.resetURL)</h4></div>
+    <div class="row">
+        <!--<p>https://</p>-->
+        <div class="col">
+            <label for="resetURL" class="sr-only">@Html.DisplayNameFor(model => model.processorInfo.resetURL)</label>
+            <input asp-for="processorInfo.resetURL" type="url" id="resetURL" class="form-control" placeholder="https://example.com/api/reset" required>
+        </div>
+    </div>
+
+    <div class="row"><h4>@Html.DisplayNameFor(model => model.processorInfo.TLSversion)</h4></div>
+    <div class="row">
+        <div class="col">
+            <label for="TLSversion" class="sr-only">@Html.DisplayNameFor(model => model.processorInfo.TLSversion)</label>
+            <select asp-for="processorInfo.TLSversion" class="custom-select form-control" id="TLSversion" required>
+                <option value="0">@Models.Processer.TLSVersion.TLSv1_2.ToString()</option>
+                <option value="1" selected>@Models.Processer.TLSVersion.TLSv1_3.ToString()</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    </div>
+
+    <div class="row" style="height:1vh"></div>
+
+    <div class="row">
+        <div class="col">
+            <button class="btn btn-lg btn-primary btn-block" type="submit">@ViewData["Title"] </button>
+        </div>
+    </div>
+
+</form>
+<style>
+    p{
+        margin-bottom:0;
+        padding-top:0.4rem;
+        color:lightslategray
+    }
+</style>
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>

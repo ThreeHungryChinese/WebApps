@@ -5,14 +5,7 @@ body {
     background-color: whitesmoke;
 }
 
-#mainConationer, main {
-    height: 100%;
-    width: 100%;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-align: center;
-    align-items: center;
-}
+
 
 .form-signin {
     width: 100%;
