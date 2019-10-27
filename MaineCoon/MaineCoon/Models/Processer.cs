@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -13,7 +14,9 @@ namespace MaineCoon.Models {
         /// <summary>
         /// Id of every quest to data processer
         /// </summary>
-        public int id { get; set; }
+        [BindNever]
+        [Key]
+        public int Id { get; set; }
 
         ///<summary>
         ///Must only use letters.
@@ -73,5 +76,10 @@ namespace MaineCoon.Models {
         /// </summary>
         [Display(Name ="User's")]
         public int belongsToUserID { get; set; }
+        /// <summary>
+        /// 
+        /// </summary>
+        [Display(Name = "Call Count")]
+        public int count { get; set; }
     }
 }

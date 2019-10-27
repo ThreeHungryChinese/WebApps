@@ -19,5 +19,6 @@ namespace MaineCoon.Data
         public DbSet<MaineCoon.Models.QuestRecord> QuestRecord { get; set; }
         public DbSet<MaineCoon.Models.User> User { get; set; }
         public DbSet<MaineCoon.Models.Processer> Processers { get; set; }
+        public DbSet<MaineCoon.Models.UniversityProgram> UniversityPrograms { get; set; }
     }
 }

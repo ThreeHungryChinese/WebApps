@@ -58,8 +58,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Pages\Schooladmin\" />
-    <Folder Include="Pages\websiteadmin\" />
+    <Folder Include="Pages\WebsiteAdmin\" />
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties wwwroot_4lib_4bootstrap_4dist_4css_4bootstrap_1css_1map__JsonSchema="" /></VisualStudio></ProjectExtensions>

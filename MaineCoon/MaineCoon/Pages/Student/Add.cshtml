@@ -1,0 +1,143 @@
+﻿@page
+@model MaineCoon.Pages.Student.AddApplyModel
+@{
+    ViewData["Title"] = "Add";
+}
+
+
+
+<div class="row">
+    <h1>@ViewData["Title"] </h1>
+</div>
+
+<div class="row" style="height:10vh"></div>
+
+<form method="post" class="needs-validation" novalidate>
+    <div class="row">
+        <h4>@Html.DisplayNameFor(model => model.studentScore.T)</h4>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label for="friendlyName" class="sr-only">@Html.DisplayNameFor(model => model.studentScore.T)</label>
+            <input type="number" asp-for="studentScore.T" id="T" class="form-control" placeholder="@Html.DisplayNameFor(m => m.studentScore.T)" required autofocus>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <h4>@Html.DisplayNameFor(model => model.studentScore.G)</h4>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label for="G" class="sr-only">@Html.DisplayNameFor(model => model.studentScore.G)</label>
+            <input type="number" asp-for="studentScore.G" id="G" class="form-control" placeholder="@Html.DisplayNameFor(m => m.studentScore.G)" required>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <h4>@Html.DisplayNameFor(model => model.studentScore.GPA)</h4>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label for="GPA" class="sr-only">@Html.DisplayNameFor(model => model.studentScore.GPA)</label>
+            <input type="number" asp-for="studentScore.GPA" id="GPA" class="form-control" placeholder="@Html.DisplayNameFor(m => m.studentScore.GPA)" required>
+        </div>
+    </div>
+
+    <div class="row">
+        <h4>@Html.DisplayNameFor(model => model.studentScore.LOR)</h4>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label for="LOR" class="sr-only">@Html.DisplayNameFor(model => model.studentScore.LOR)</label>
+            <input type="number" asp-for="studentScore.LOR" id="LOR" class="form-control" placeholder="@Html.DisplayNameFor(m => m.studentScore.LOR)" required>
+        </div>
+    </div>
+
+    <div class="row">
+        <h4>@Html.DisplayNameFor(model => model.studentScore.RES)</h4>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label for="RES" class="sr-only">@Html.DisplayNameFor(model => model.studentScore.RES)</label>
+            <input type="number" asp-for="studentScore.RES" id="RES" class="form-control" placeholder="@Html.DisplayNameFor(m => m.studentScore.RES)" required>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <h4>@Html.DisplayNameFor(model => model.studentScore.SOP)</h4>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label for="SOP" class="sr-only">@Html.DisplayNameFor(model => model.studentScore.SOP)</label>
+            <input type="number" asp-for="studentScore.SOP" id="RES" class="form-control" placeholder="@Html.DisplayNameFor(m => m.studentScore.SOP)" required>
+        </div>
+    </div>
+
+
+
+    <div class="row">
+        <h4>@Html.DisplayNameFor(model => model.studentScore.UR)</h4>
+    </div>
+    <div class="row">
+        <div class="col">
+            <label for="UR" class="sr-only">@Html.DisplayNameFor(model => model.studentScore.UR)</label>
+            <input type="number" asp-for="studentScore.UR" id="UR" class="form-control" placeholder="@Html.DisplayNameFor(m => m.studentScore.UR)" required>
+        </div>
+    </div>
+
+
+
+    <div class="row">
+        <h4>Program Apply</h4>
+    </div>
+    <select asp-for="ProgramApplying" class="custom-select form-control" id="ProgramApplying" required>
+        <option selected>Choose Account Role</option>
+        @foreach (var item in this.Model.ProgramList) {
+            <option value="@item.Key">@item.Value</option>
+        }
+    </select>
+
+    <div class="row">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    </div>
+
+    <div class="row" style="height:1vh"></div>
+
+    <div class="row">
+        <div class="col">
+            <button class="btn btn-lg btn-primary btn-block" type="submit">@ViewData["Title"] </button>
+        </div>
+    </div>
+
+</form>
+<style>
+    p {
+        margin-bottom: 0;
+        padding-top: 0.4rem;
+        color: lightslategray
+    }
+</style>
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>
+

@@ -23,6 +23,9 @@ namespace MaineCoon.Pages
         [BindProperty]
         public User UserData { get; set; }
         public async Task<IActionResult> OnPostAsync() {
+            if (!ModelState.IsValid) {
+                return Page();
+            }
 
             if (_context.User.Where(usr => usr.email == UserData.email).Any()) {
                 throw new Exception("User Already Existed!");
@@ -36,14 +39,11 @@ namespace MaineCoon.Pages
                     UserData.SALT = hasher.Key;
                 }
             }
-            if (!ModelState.IsValid) {
-                return Page();
-            }
 
 
             _context.User.Add(UserData);
             await _context.SaveChangesAsync();
-            return RedirectToPage("./Index?message=RegistSucceed!");
+            return Redirect("./Index?message=RegistSucceed!");
         }
     }
 }

@@ -29,10 +29,6 @@ namespace MaineCoon.Pages
         public User UserData { get; set; }
         public async Task<IActionResult> OnPostAsync() {
 
-            if (!ModelState.IsValid) {
-                ViewData["message"] = "Login failed!";
-                return Page();
-            }
             using (HMACSHA256 hasher = new HMACSHA256()) {
                 User getSaveUser = _context.User.Where(usr => usr.email == UserData.email).FirstOrDefault();
                 if (getSaveUser != null) {
@@ -43,7 +39,7 @@ namespace MaineCoon.Pages
                         if(getSaveUser.accountStatus != 0) {
                             //SUCCESS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
                             var claims = new List<Claim>{
-                                new Claim(ClaimTypes.Name, getSaveUser.email),
+                                new Claim(ClaimTypes.Name, getSaveUser.name),
                                 new Claim(ClaimTypes.Email, getSaveUser.email),
                                 new Claim(ClaimTypes.Role,getSaveUser.sysRole.ToString()),
                                 new Claim(ClaimTypes.NameIdentifier,getSaveUser.Id.ToString())
@@ -66,6 +62,10 @@ namespace MaineCoon.Pages
                 }
             }
 
+            if (!ModelState.IsValid) {
+                ViewData["message"] = "ModelState is Not Valid!";
+                return Page();
+            }
             return RedirectToPage("./Index");
         }
     }
