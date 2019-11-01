@@ -22,7 +22,7 @@ namespace MaineCoon.Models {
         ///Must only use letters.
         ///The first letter is required to be uppercase.White space, numbers, and special characters are not allowed.
         ///</summary>
-        [Display(Name = "ProcesserName")]
+        [Display(Name = "Algorithm Name")]
         [StringLength(20, MinimumLength = 3), Required, RegularExpression(@"^[A-Z]+[a-zA-Z""'\s-]*$")]
         public string friendlyName { get; set; }
         /// <summary>
@@ -54,7 +54,7 @@ namespace MaineCoon.Models {
         /// <summary>
         /// 
         /// </summary>
-        [Display(Name = "Reset Processer URL")]
+        [Display(Name = "Reset Algorithm URL")]
         [RegularExpression(@"^https://([\w-]+\.)+[\w-]+(/[\w-./?%&=]*)?$")]
         [DataType(DataType.Url)]
         [Required]
