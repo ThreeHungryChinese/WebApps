@@ -20,17 +20,17 @@ namespace MaineCoon.Models {
         public int BelongsToUserId { get; set; }
 
 
-        [Display(Name = "CV Text Processer Id")]
+        [Display(Name = "CV Text Algorithm Id")]
         public int CVTextProcesserId { get; set; }
 
 
-        [Display(Name = "RL Text Processer Id")]
+        [Display(Name = "RL Text Algorithm Id")]
         public int RLTextProcesserId { get; set; }
 
-        [Display(Name = "SOP Text Processer Id")]
+        [Display(Name = "SOP Text Algorithm Id")]
         public int SOPTextProcesserId { get; set; }
 
-        [Display(Name = "Score Processer Id")]
+        [Display(Name = "Score Algorithm Id")]
         [Required]
         public int ProcesserId { get; set; }
 
