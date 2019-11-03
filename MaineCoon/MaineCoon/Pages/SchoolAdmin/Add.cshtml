@@ -29,7 +29,7 @@
         <div class="col">
             <label for="publicKey" class="sr-only">@Html.DisplayNameFor(model => model.NewProgram.ProcesserId)</label>
             <select asp-for="NewProgram.ProcesserId" class="custom-select form-control" id="AccountRole" required>
-                <option selected>Choose Account Role</option>
+                <option selected>Choose A Program</option>
                 @foreach (var processer in this.Model.processers) {
                     <option value="@processer.Key">@processer.Value</option>
                 }

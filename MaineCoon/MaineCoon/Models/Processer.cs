@@ -42,7 +42,6 @@ namespace MaineCoon.Models {
         /// 
         /// </summary>
         [Display(Name = "Get Result URL")]
-        [RegularExpression(@"^https://([\w-]+\.)+[\w-]+(/[\w-./?%&=]*)?$")]
         [DataType(DataType.Url)]
         [Required]
         public System.Uri getResultURL { get; set; }

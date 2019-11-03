@@ -35,7 +35,7 @@ namespace MaineCoon.Pages.Developer
                 await _context.SaveChangesAsync();
             }
 
-            return Redirect("./Develop/Index?message=Succeed!");
+            return Redirect("./Index?message=Succeed!");
         }
     }
 }

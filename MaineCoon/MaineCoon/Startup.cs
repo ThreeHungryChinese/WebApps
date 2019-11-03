@@ -38,7 +38,7 @@ namespace MaineCoon {
                 .AddCookie(options => {
                     options.LoginPath = "/Signin";
                     options.LogoutPath = "/Account/LogOff";
-                    options.ExpireTimeSpan = TimeSpan.FromSeconds(10);
+                    options.ExpireTimeSpan = TimeSpan.FromSeconds(60);
                     options.SlidingExpiration = true;
                     options.AccessDeniedPath = "/Signin";
                 });
