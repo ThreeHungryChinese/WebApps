@@ -23,7 +23,7 @@ namespace MaineCoon.Pages.SchoolAdmin
         }
         [BindProperty]
         public UniversityProgram NewProgram { get; set; }
-        public Dictionary<int,string> processers;
+        public Dictionary<int, string> processers { get; set; }
         public async Task<IActionResult> OnPostAsync() {
             if (_context.UniversityPrograms.Where(procer => procer.ProgramName == NewProgram.ProgramName).Any()) {
                 throw new Exception("Processer Existed!");

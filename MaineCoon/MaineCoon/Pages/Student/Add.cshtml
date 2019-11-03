@@ -94,7 +94,7 @@
         <h4>Program Apply</h4>
     </div>
     <select asp-for="ProgramApplying" class="custom-select form-control" id="ProgramApplying" required>
-        <option selected>Choose Account Role</option>
+        <option selected>Choose A Program</option>
         @foreach (var item in this.Model.ProgramList) {
             <option value="@item.Key">@item.Value</option>
         }

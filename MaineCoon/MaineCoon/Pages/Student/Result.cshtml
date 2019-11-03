@@ -1,0 +1,71 @@
+﻿@page
+@model MaineCoon.Pages.Student.ResultModel
+@{
+    ViewData["Title"] = "Result";
+}
+    <div class="row text-center justify-content-center " style="padding-top:30%">
+        <div class="spinner justify-content-center hideOut">
+            <div class="double-bounce1"></div>
+            <div class="double-bounce2"></div>
+        </div>
+    </div>
+    <div class="row text-center justify-content-center hideOut">
+        <h4 style="padding:1vh" class="">Generateing&nbsp;Scores...</h4>
+    </div>
+    <div class="row  text-center justify-content-center" id="Result">
+        <h1> @ViewData["result"]</h1>
+    </div>
+<style>
+  
+    .spinner {
+  width: 15vh;
+  height: 15vh;
+  position:relative;
+}
+    .hideOut{
+        opacity:0;
+        animation:easeOut 7.0s;
+        animation-iteration-count:1;
+    }
+ @@keyframes easeOut{
+     0%{opacity:1}
+     80%{opacity:1}
+     100%{opacity:0}
+ }
+.double-bounce1, .double-bounce2 {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color:deepskyblue;
+  opacity: 0.6;
+  position: absolute;
+  top: 0;
+  left:0;
+  animation: bounce 2.0s 3.5 ease-in-out;
+}
+ 
+.double-bounce2 {
+  animation-delay: -1.0s;
+}
+ 
+ 
+@@keyframes bounce {
+  0%, 100% {transform: scale(0.0);} 
+  50% { transform: scale(1.0);}
+}
+
+#Result{
+    opacity:1;
+    animation-delay:0s;
+    animation: ShowUpNot;
+    animation-duration:7.0s;
+    animation-direction:normal;
+    animation-iteration-count:1;
+}
+@@keyframes ShowUpNot{
+    0%{opacity:0}
+    80%{opacity:0}
+    100%{opacity:1}
+}
+</style>
+
